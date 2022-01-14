@@ -35,9 +35,6 @@ public class FileHandling {
 		        e.getStackTrace();
 		      }
 		    
-		
-	//	System.out.println("Enter the data");
-		//data = sc.nextLine(); 
 		data = "How are you?";
 	   try {
 	      // Step 1: Creates a Writer using FileWriter
@@ -66,7 +63,7 @@ public class FileHandling {
 			e.printStackTrace();
 		}
 	    BufferedWriter br = new BufferedWriter(fr);
-	    br.write(d1);
+	    br.append(d1);
 
 	    br.close();
 	    fr.close();
