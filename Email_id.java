@@ -1,33 +1,63 @@
 package core.programs.assissted.project;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Email_id {
+public class Email_id{
 
-	
-	public static void main(String[] args) {
-		 ArrayList<String> arr = new ArrayList<String>(Arrays.asList("swapnali@gmail.com", "savita@gmail.com", "nikhil@gmail.com", "yogita@gmail.com"));
-		
-		 try{
-			 Scanner sc = new Scanner(System.in);
-			 System.out.println("Enter the Email Id you want to search : ");
-			 String s= sc.next("[a-z]+[@][a-z]+.com");
-		 
-			 if(arr.contains(s))
-			 {
-				 System.out.println(s+" is present inside the list ");
-			 }
-			 else
-			 {
-				 System.out.println(s+" is not present inside the list ");
-			 }
-		 
-		 	}catch(Exception e){
-		 		System.out.println("Please enter valid Email Id");
-		 }
+	    public static void main(String[] args) {
 
+	        // User-input code
+	        Scanner scan = new Scanner(System.in);
+	        System.out.println("Enter your email address");
+	        String email = scan.next();
+
+	        // Code to check if email ends with '.' (period sign) 
+	        boolean checkEndDot  = false;
+	        checkEndDot = email.endsWith(".");
+
+	        // Code to find out last index of '@' sign
+	        int indexOfAt = email.indexOf('@');
+	        int lastIndexOfAt = email.lastIndexOf('.');
+
+
+	        //Code to check occurence of @ in the email address  
+	        int countOfAt = 0;
+
+	        for (int i = 0; i < email.length(); i++) {
+	            if(email.charAt(i)=='@')
+	                countOfAt++; }
+
+
+	        // Code to check occurence of [period sign i..e, "."] after @ 
+	        String buffering = email.substring(email.indexOf('@')+1, email.length());
+	        int len = buffering.length();
+
+	        int countOfDotAfterAt = 0;
+	        for (int i=0; i < len; i++) {
+	            if(buffering.charAt(i)=='.')
+	                countOfDotAfterAt++; }
+
+
+	// Code to print userName & domainName
+	            String userName = email.substring(0, email.indexOf('@'));
+
+
+	            String domainName = email.substring(email.indexOf('@')+1, email.length());
+
+	                System.out.println("\n");   
+
+	               if ((countOfAt==1) && (userName.endsWith(".")==false)  && (countOfDotAfterAt ==1) &&   
+	                  ((indexOfAt+3) <= (lastIndexOfAt) && !checkEndDot)) {
+
+	                   System.out.println("\"Valid email address\"");}
+
+	               else {       
+	                        System.out.println("\n\"Invalid email address\""); }
+
+
+	                System.out.println("\n");
+	                System.out.println("User name: " +userName+ "\n" + "Domain name: " +domainName);
+
+
+	    }
 	}
-
-}
